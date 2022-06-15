@@ -1,0 +1,14 @@
+.bookstoreImage {
+    position: relative;
+    top: 125px;
+    left: 320px;
+    width: 624px;
+    height: 391px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* background: #c46363 0% 0% no-repeat padding-box; */
+    background: #F5F5F5 0% 0% no-repeat padding-box;
+    border-radius: 21px;
+    opacity: 1;
+}

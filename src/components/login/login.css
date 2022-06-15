@@ -1,0 +1,48 @@
+.loginContainer {
+    border: 1px solid #E4E4E4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 389px;
+    height: 425px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 5px 15px #00000029;
+    border-radius: 6px;
+    opacity: 1;
+}
+.pageSwitch{
+    display: flex;
+    justify-content: space-between;
+    width: 252px;
+    position: relative;
+    top: 25px;
+}
+.textEmail{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    top: 30px;
+}
+.textPassword{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    top: 40px;
+}
+.loginButton{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 252px;
+    position: relative;
+    top: 35px;
+}
+.otherLogin{
+    display: flex;
+    justify-content: space-between;
+    width: 252px;
+    position: relative;
+    top: 45px;
+}
