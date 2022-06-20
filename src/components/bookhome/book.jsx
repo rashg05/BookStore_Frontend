@@ -3,9 +3,14 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import { Box } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 function Book(props) {
+
+    // const abc = () => {
+    //     props.
+    // }
     return (
         <Card style={{
             width: '18vw',
@@ -36,8 +41,9 @@ function Book(props) {
                         component="img"
                         height="140px"
                         width="100%"
-                        image="./img/Image 11.png"
-                        // image={props.books.bookImage}
+                        // image="./img/Image 11.png"
+                        image={props.books.bookImage} 
+                        // onClick={abc}
                         alt="green iguana"
                     />
                 </Box>
@@ -67,8 +73,8 @@ function Book(props) {
                         letterSpacing: '0px',
                         alignItems: 'center'
                     }}>
-                        {/* {props.books.bookName} */}
-                        Don't Make Me Think
+                        {props.books.bookName}
+                        {/* Don't Make Me Think */}
                         </Box>
                     <Box style={{
                         // border: '1px solid blue',
@@ -79,8 +85,8 @@ function Book(props) {
                         letterSpacing: '0px',
                         alignItems: 'center'
                     }}>
-                        {/* {props.books.author} */}
-                        By Steve King
+                        {props.books.author}
+                        {/* By Steve King */}
                         </Box>
                     <Box style={{
                         // border: '1px solid purple',
@@ -96,13 +102,17 @@ function Book(props) {
                             width: '18%',
                             height: '20px',
                             color: '#FFFFFF',
-                            textAlign: 'center'
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            fontSize: '13px'
+                        
                         }}>
                             4.5
-                            <Box>
+                            {/* <Box>
                                 <StarBorderOutlinedIcon fontSize='small' color='#FFFFFF' />
-                            </Box>
-                            <StarBorderOutlinedIcon />
+                            </Box> */}
+                            <StarBorderIcon fontSize='x-small'/>
                         </Box>
                         <Box style={{
                             color: '#878787',
@@ -111,10 +121,10 @@ function Book(props) {
                         }}>
                             (20)
                         </Box>
-                        <Box>
+                        {/* <Box>
 
                             <StarBorderOutlinedIcon />
-                        </Box>
+                        </Box> */}
                     </Box>
                     <Box style={{
                         // border: '1px solid brown',
@@ -128,8 +138,8 @@ function Book(props) {
                             font: 'normal normal normal 12px/16px Roboto',
                             letterSpacing: '0px'
                         }}>
-                            {/* {props.books.discountPrice} */}
-                            Rs. 1500
+                            Rs.{props.books.discountPrice}
+                            {/* Rs. 1500 */}
                         </Box>
                         <Box style={{
                             color: '#878787',
@@ -138,8 +148,8 @@ function Book(props) {
                             marginLeft: '7px',
                             textDecoration: 'line-through'
                         }}>
-                            {/* {props.books.price} */}
-                            Rs. 2000
+                            Rs.{props.books.price}
+                            {/* Rs. 2000 */}
                         </Box>
                     </Box>
                 </Box>
