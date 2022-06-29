@@ -5,6 +5,7 @@ import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import { signUp } from '../../services/userservice';
 import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const fullNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
 const emailIdRegex = /^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9A-Za-z]+.[a-zA-Z]{1,3}([.][A-Za-z]{1})*$/;
@@ -13,7 +14,8 @@ const phoneNumberRegex = /^[6-9]{1}[0-9]{9}$/;
 
 function Signup(props) {
 
-    let history = useHistory()
+    // let history = useHistory()
+    let navigate = useNavigate()
 
     const [signUpObj, setSignUpObj] = React.useState({
         fullName: '', email: '', password: '', phone: ''
@@ -99,7 +101,7 @@ function Signup(props) {
             signUp(signUpObj)
                 .then((resp) => {
                     console.log(resp);
-                    history.push('/')
+                    navigate('/')
                 })
                 .catch((error) => { console.log(error) })
         }

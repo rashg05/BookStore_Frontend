@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const headerConfig = {
-    header: {
+    headers: {
         token: localStorage.getItem('token')
     }
 }
