@@ -3,9 +3,9 @@ import { Box, TextField } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Button from '@mui/material/Button';
-import { useHistory } from 'react-router-dom';
 import './login.css';
 import { signIn } from '../../services/userservice'
+import { useNavigate } from "react-router-dom";
 
 const emailRegex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/;
@@ -13,7 +13,8 @@ const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).
 
 function Login(props) {
 
-    let history = useHistory()
+    // let history = useHistory()
+    let navigate = useNavigate()
 
     const [regexObj, setRegexObj] = React.useState({
         emailBorder: false, passwordBorder: false,
@@ -49,7 +50,7 @@ function Login(props) {
                 .then((resp) => {
                     console.log(resp);
                     localStorage.setItem('token', resp.data.data);
-                    history.push('/Home')
+                    navigate('/Home')
                 })
                 .catch((error) => { console.log(error) })
 

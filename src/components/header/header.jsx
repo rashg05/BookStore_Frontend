@@ -16,6 +16,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import education from '../../assests/education.png';
+import { useNavigate } from 'react-router';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -58,11 +59,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Header() {
+    
+    const navigate = useNavigate(); 
+
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+    const myCartPage = () => {
+        navigate('/mycart')
+    }
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -251,7 +259,7 @@ function Header() {
                                 onClick={handleProfileMenuOpen}
                                 color="inherit"
                             >
-                                <ShoppingCartOutlinedIcon />
+                                <ShoppingCartOutlinedIcon onClick={myCartPage}/>
                             </IconButton>
                             <h3 style={{
                                 width: '31px',

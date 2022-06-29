@@ -2,15 +2,14 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import { Box } from '@mui/material';
-import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 function Book(props) {
+    const listenToDashboardView = (books) => {
+        console.log("propsbook", books)
+        props.listenToDashboardView(books)
+    }
 
-    // const abc = () => {
-    //     props.
-    // }
     return (
         <Card style={{
             width: '18vw',
@@ -35,8 +34,9 @@ function Book(props) {
                 <Box style={{
                     width: '50%',
                     height: '140px',
-
-                }}>
+                }}
+                onClick={() => listenToDashboardView(props.books)}
+                >
                     <CardMedia
                         component="img"
                         height="140px"
@@ -44,7 +44,7 @@ function Book(props) {
                         // image="./img/Image 11.png"
                         image={props.books.bookImage} 
                         // onClick={abc}
-                        alt="green iguana"
+                        alt="Book"
                     />
                 </Box>
 
@@ -109,22 +109,15 @@ function Book(props) {
                         
                         }}>
                             4.5
-                            {/* <Box>
-                                <StarBorderOutlinedIcon fontSize='small' color='#FFFFFF' />
-                            </Box> */}
                             <StarBorderIcon fontSize='x-small'/>
                         </Box>
                         <Box style={{
                             color: '#878787',
                             letterSpacing: '0px',
-                            marginLeft: '7px'
+                            paddingLeft: '7px'
                         }}>
                             (20)
                         </Box>
-                        {/* <Box>
-
-                            <StarBorderOutlinedIcon />
-                        </Box> */}
                     </Box>
                     <Box style={{
                         // border: '1px solid brown',

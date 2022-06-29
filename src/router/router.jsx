@@ -1,19 +1,28 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import {
+    BrowserRouter as Router,
+    Routes,
+    Route
+  } from 'react-router-dom';
 import Lander from "../pages/lander/lander";
 import Home from "../pages/home/home";
+import Mycart from '../pages/mycart';
+import Wishlistpage from '../pages/wishlistpage';
+import Orderplaced from '../pages/orderplaced';
 
-function Router() {
+function RouterOne() {
     return (
         <div>
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path="/" component={Lander} />
-                    <Route exact path="/Home" component={Home} />
-                </Switch>
-            </BrowserRouter>
-
+            <Router>
+                <Routes>
+                    <Route exact path="/" element={<Lander />} />
+                    <Route path="/Home" element={<Home />} />
+                    <Route path="/mycart" element={<Mycart />} />
+                    <Route path="/wishlist" element={<Wishlistpage />} />
+                    <Route path="/orderplaced" element={<Orderplaced />} />
+                </Routes>
+            </Router>
         </div>
     )
 }
 
-export default Router
+export default RouterOne
