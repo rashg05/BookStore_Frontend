@@ -7,7 +7,10 @@ function Imagebox() {
     return (
         <Box className='bookstoreImage'>
             <Box>
-                <img src={ladypic} style={{
+                <img 
+                src={ladypic} 
+                alt='lady pic'
+                style={{
                     position: 'relative',
                     top: '45px',
                     right: '135px',

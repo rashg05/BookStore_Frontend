@@ -16,7 +16,7 @@ export const getBookCart = () => {
     return response
 }
 
-export const updateCart = (id) => {
-    let response = axios.get(`http://localhost:3005/api/v1/cart/cart_item_quantity/${id}`, headerConfig)
+export const updateCart = (id, obj) => {
+    let response = axios.put(`http://localhost:3005/api/v1/cart/cart_item_quantity/${id}`, obj, headerConfig)
     return response
 }

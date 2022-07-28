@@ -3,7 +3,7 @@ import { Box, fabClasses, Grid } from '@mui/material';
 import Button from '@mui/material/Button';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
-import { addBookCart } from '../../services/cartservice';
+import { addBookCart, updateCart } from '../../services/cartservice';
 import { addBookWishlist } from '../../services/wishlistservice';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -23,7 +23,11 @@ function Addcart(props) {
 
     }
     const incrementButton = () => {
-        setCountBag(prevcount => prevcount + 1)
+        let data = {increase: true}
+        updateCart(props.bookSelected._id, data)
+        .then((resp) => {console.log(resp);})
+        .catch((err) => {console.log(err);})
+        // setCountBag(prevcount => prevcount + 1)
     }
     const decrementButton = () => {
         if(countBag <=0){
@@ -119,7 +123,7 @@ function Addcart(props) {
                                     background: '#FFFFFF 0% 0% no-repeat padding-box',
                                     justifyContent: 'center',
                                 }}>
-                                    {countBag}
+                                    {props.bookSelected.quantity}
                                 </Box>
                                 <Button>
                                     <AddCircleOutlineIcon style={{

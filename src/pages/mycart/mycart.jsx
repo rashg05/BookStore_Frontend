@@ -3,14 +3,15 @@ import { Box, Button } from '@mui/material'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useState } from 'react';
-import Addressdetails from '../components/addressdetails';
-import Ordersummary from '../components/ordersummary';
+import Addressdetails from '../../components/addressdetails/addressdetails';
+import Ordersummary from '../../components/ordersummary/ordersummary'
 import { useEffect } from 'react';
-import { getBookCart } from '../services/cartservice';
-import Header from '../components/header/header';
+import { getBookCart } from '../../services/cartservice';
+import Header from '../../components/header/header'
 import { Container } from '@mui/material'
-import Counter from '../components/counter';
+import Counter from '../../components/counter/counter'
 import { makeStyles } from '@mui/styles';
+import Footer from '../../components/footer/footer'
 
 const UseStyle = makeStyles({
     containerCart: {
@@ -144,7 +145,6 @@ const UseStyle = makeStyles({
         display: 'flex',
         width: '98%',
         height: '60px',
-        border: '1px solid yellow',
         marginTop: '10px',
         border: '1px solid #DCDCDC',
         borderRadius: '1px'
@@ -165,7 +165,6 @@ const UseStyle = makeStyles({
         diplay: 'flex',
         width: '98%',
         height: '60px',
-        border: '1px solid blue',
         marginTop: '10px',
         border: '1px solid #DCDCDC',
         borderRadius: '1px'
@@ -338,6 +337,7 @@ function Mycart() {
                         : <Ordersummary />
                 }
             </Box>
+            <Footer />
         </Box>
     )
 }
