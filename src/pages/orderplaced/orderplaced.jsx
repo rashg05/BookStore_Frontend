@@ -1,6 +1,9 @@
 import React from 'react'
 import { Box, Button } from '@mui/material'
 import { makeStyles } from '@mui/styles'
+import Header from '../../components/header/header'
+import Footer from '../../components/footer/footer'
+import { useNavigate } from 'react-router';
 
 const UseStyle = makeStyles({
     outerBox: {
@@ -95,50 +98,61 @@ const UseStyle = makeStyles({
 })
 
 function Orderplaced() {
+    const navigate = useNavigate();
     const classes = UseStyle()
-    return (
-        <Box className={classes.outerBox}>
-            <Box className={classes.imgBox}>
-                <img src='./img/orderplaced.jpg' alt='orderplaced'
-                    width='350px'
-                    height='230px' />
-            </Box>
-            <Box className={classes.textBox}>
-                <h3 className={classes.textContent}>
-                    hurry!!! your order is confirmed
-                    the order id is #123456 save the order id for
-                    further communications..
-                </h3>
-            </Box>
-            <Box className={classes.tableBox}>
-                <Box className={classes.tableHeading}>
-                    <Box>Email us</Box>
-                    <Box>Contact us</Box>
-                    <Box>Address</Box>
-                </Box>
-                <Box className={classes.contentBox}>
-                    <Box className={classes.contentOne}>
-                        admin@bookstore.com
-                    </Box>
-                    <Box className={classes.contentTwo}>
-                        +91 8163475881
-                    </Box>
-                    <Box className={classes.contentThree}>
-                        42, 14th Main, 15th Cross, Sector 4, Opp to BDA
-                        complex, near Kumarakom restaurent, HSR Layout,
-                        Bangalore 560034
-                    </Box>
-                </Box>
-            </Box>
 
-            <Box className={classes.buttonBox}>
-                <Button
-                    className={classes.shoppingButton}
-                    variant="contained"
-                >
-                    CONTINUE SHOPPING
-                </Button>
+    const myHomePage = () => {
+        navigate('/Home')
+    }
+
+    return (
+        <Box>
+            <Header />
+            <Box className={classes.outerBox}>
+                <Box className={classes.imgBox}>
+                    <img src='./img/orderplaced.jpg' alt='orderplaced'
+                        width='350px'
+                        height='230px' />
+                </Box>
+                <Box className={classes.textBox}>
+                    <h3 className={classes.textContent}>
+                        hurry!!! your order is confirmed
+                        the order id is #123456 save the order id for
+                        further communications..
+                    </h3>
+                </Box>
+                <Box className={classes.tableBox}>
+                    <Box className={classes.tableHeading}>
+                        <Box>Email us</Box>
+                        <Box>Contact us</Box>
+                        <Box>Address</Box>
+                    </Box>
+                    <Box className={classes.contentBox}>
+                        <Box className={classes.contentOne}>
+                            admin@bookstore.com
+                        </Box>
+                        <Box className={classes.contentTwo}>
+                            +91 8163475881
+                        </Box>
+                        <Box className={classes.contentThree}>
+                            42, 14th Main, 15th Cross, Sector 4, Opp to BDA
+                            complex, near Kumarakom restaurent, HSR Layout,
+                            Bangalore 560034
+                        </Box>
+                    </Box>
+                </Box>
+
+                <Box className={classes.buttonBox}>
+                    <Button
+                        className={classes.shoppingButton}
+                        variant="contained"
+                        onClick={myHomePage}
+                    >
+                        CONTINUE SHOPPING
+                    </Button>
+                </Box>
             </Box>
+            <Footer />
         </Box>
     )
 }

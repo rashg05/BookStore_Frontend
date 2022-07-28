@@ -5,6 +5,7 @@ import Book from '../../components/bookhome/book'
 import { getBooks } from '../../services/bookservice'
 import { Container } from '@mui/material'
 import Addcart from '../../components/addcart/addcart';
+import Footer from '../../components/footer/footer';
 
 function Home() {
 
@@ -72,9 +73,9 @@ function Home() {
           flexDirection: 'row',
           alignItems: 'center',
           position: 'relative',
-          left: 170,
+          left: 160,
           width: '81vw',
-          height: '91vh',
+          height: 'auto',
           // border: '1px solid black'
         }}>
 
@@ -133,6 +134,7 @@ function Home() {
             </Grid>
         }
       </Grid>
+      <Footer />
     </Box>
   )
 }

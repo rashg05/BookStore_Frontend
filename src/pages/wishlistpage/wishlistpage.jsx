@@ -1,37 +1,45 @@
 import React from 'react'
 import { Box, Container } from '@mui/material'
-import Header from '../components/header/header'
+import Header from '../../components/header/header'
 import { makeStyles } from '@mui/styles'
 import { useEffect } from 'react'
-import Wishlist from '../components/wishlist'
+import Wishlist from '../../components/wishlist/wishlist'
+import { getBookWishlist } from '../../services/wishlistservice'
+import Footer from '../../components/footer/footer'
 
 const UseStyle = makeStyles({
     wishlistBox: {
-        border: '1px solid black',
+        border: '1px solid #E4E4E4',
         width: '81vw',
-        height: '77vh',
+        height: 'auto',
         display: 'flex',
         flexDirection: 'column',
         marginLeft: '170px'
     },
     myList: {
-        // border: '1px solid pink',
+        border: '1px solid #E4E4E4',
         width: '100%',
         height: '55px',
         display: 'flex',
         alignItems: 'center',
-      
+        background: '#F5F5F5 0% 0% no-repeat padding-box'
     }
 })
 
 function Wishlistpage() {
     const classes = UseStyle()
 
-    // const [listOfWishlist, setListOfWishlist] = React.useState([])
+    const [listOfWishlist, setListOfWishlist] = React.useState([])
 
-    // useEffect(() => {
+    useEffect(() => {
+        getBookWishlist()
+            .then((resp) => {
+                console.log(resp, "resp.data.data");
+                setListOfWishlist(resp.data.data[0].book)
+            })
+            .catch((err) => { console.log(err); })
 
-    // }, [])
+    }, [])
 
     return (
         <Box>
@@ -60,15 +68,16 @@ function Wishlistpage() {
                     </h3>
                 </Box>
                 <Box>
-                    <Wishlist />
-                {/* {
+                    {/* <Wishlist /> */}
+                {
                 listOfWishlist.map((wishlist) =>
                 (
                     <Wishlist wishlistBooks={wishlist} />
                 )
-                )} */}
+                )}
                 </Box>
             </Box>
+            <Footer />
         </Box>
     )
 }

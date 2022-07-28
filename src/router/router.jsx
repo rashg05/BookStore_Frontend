@@ -5,9 +5,9 @@ import {
   } from 'react-router-dom';
 import Lander from "../pages/lander/lander";
 import Home from "../pages/home/home";
-import Mycart from '../pages/mycart';
-import Wishlistpage from '../pages/wishlistpage';
-import Orderplaced from '../pages/orderplaced';
+import Mycart from '../pages/mycart/mycart';
+import Wishlistpage from '../pages/wishlistpage/wishlistpage';
+import Orderplaced from '../pages/orderplaced/orderplaced';
 
 function RouterOne() {
     return (

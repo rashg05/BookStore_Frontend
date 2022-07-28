@@ -3,8 +3,15 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import { Box } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { makeStyles } from '@mui/styles';
+
+const UseStyle = makeStyles({
+    
+})
 
 function Book(props) {
+    const classes = UseStyle()
+
     const listenToDashboardView = (books) => {
         console.log("propsbook", books)
         props.listenToDashboardView(books)

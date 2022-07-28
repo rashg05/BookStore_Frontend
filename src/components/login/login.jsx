@@ -13,7 +13,6 @@ const passwordRegex = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&-+=()])([a-zA-Z0-9]*).
 
 function Login(props) {
 
-    // let history = useHistory()
     let navigate = useNavigate()
 
     const [regexObj, setRegexObj] = React.useState({
@@ -85,7 +84,8 @@ function Login(props) {
                     letterSpacing: '0px',
                     textTransform: 'uppercase',
                     opacity: '1'
-                }} onClick={() => click()}>
+                }} onClick={() => click()}
+                >
                     Signup
                 </IconButton>
             </Box>

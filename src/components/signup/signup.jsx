@@ -4,7 +4,6 @@ import { Box, TextField } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 import { signUp } from '../../services/userservice';
-import { useHistory } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 const fullNameRegex = /^[A-Z]{1}[a-z]{2,}$/;
@@ -14,7 +13,6 @@ const phoneNumberRegex = /^[6-9]{1}[0-9]{9}$/;
 
 function Signup(props) {
 
-    // let history = useHistory()
     let navigate = useNavigate()
 
     const [signUpObj, setSignUpObj] = React.useState({

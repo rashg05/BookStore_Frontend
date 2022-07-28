@@ -5,9 +5,9 @@ import DeleteIcon from '@mui/icons-material/Delete'
 
 const UseStyle = makeStyles({
     mainBox: {
-        // border: '1px solid black',
+        borderBottom: '1px solid #E4E4E4',
         width: '81vw',
-        height: '220px',
+        height: 'fit',
         display: 'flex',
         alignItems: 'center'
     },
@@ -34,6 +34,25 @@ const UseStyle = makeStyles({
         flexDirection: 'column',
         justifyContent: 'center',
     },
+    booknameAuthor: {
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
+    },
+    priceBox: {
+        display: 'flex',
+        alignItems: 'center'
+    },
+    bookDiscount: {
+        color: '#0A0102',
+        font: 'normal normal normal 18px/24px Roboto',
+    },
+    bookPrice: {
+        color: '#878787',
+        font: 'normal normal normal 13px/17px Roboto',
+        marginLeft: '7px',
+        textDecoration: 'line-through'
+    },
     binBox: {
         // border: '1px solid orange',
         width: '10%',
@@ -44,7 +63,7 @@ const UseStyle = makeStyles({
     }
 })
 
-function Wishlist() {
+function Wishlist(props) {
     const classes = UseStyle()
 
     return (
@@ -52,52 +71,40 @@ function Wishlist() {
             <Box className={classes.bookContent}>
                 <Box className={classes.imageBox}>
                     <img
-                        src='./img/Image 11.png'
+                        src={props.wishlistBooks.bookImage}
+                        // src='./img/Image 11.png'
                         alt='bookimage'
                         width='85px'
                         height='120px' />
                 </Box>
                 <Box className={classes.contentBox}>
-                    <Box style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'center'
-                    }}>
+                    <Box className={classes.booknameAuthor}>
                         <h1 style={{ font: 'normal normal normal 18px/21px Lato' }}>
-                            Don't Make Me Think
+                            {props.wishlistBooks.bookName}
+                            {/* Don't Make Me Think */}
                         </h1>
-
-                        <h3 style={{
-                            font: 'normal normal normal 15px/19px Lato',
-                            color: '#9D9D9D',
-                        }}>
-                            by Steve Krug
+                        <h3 style={{ font: 'normal normal normal 15px/19px Lato', color: '#9D9D9D' }}>
+                            {props.wishlistBooks.author}
+                            {/* by Steve Krug */}
                         </h3>
                     </Box>
-                    <Box style={{
-                        display: 'flex',
-                        alignItems: 'center'
-                    }}>
-                        <Box style={{
-                            color: '#0A0102',
-                            font: 'normal normal normal 18px/24px Roboto',
-                        }}>
-                            Rs. 1500
+                    <Box className={classes.priceBox}>
+                        <Box className={classes.bookDiscount}>
+                            Rs.{props.wishlistBooks.discountPrice}
+                            {/* Rs. 1500 */}
                         </Box>
-                        <Box style={{
-                            color: '#878787',
-                            font: 'normal normal normal 13px/17px Roboto',
-                            marginLeft: '7px',
-                            textDecoration: 'line-through'
-                        }}>
-                            Rs. 2000
+                        <Box className={classes.bookPrice}>
+                            Rs.{props.wishlistBooks.price}
+                            {/* Rs. 2000 */}
                         </Box>
                     </Box>
                 </Box>
                 <Box className={classes.binBox}>
-                    <DeleteIcon style={{
-                        marginTop: '30px'
-                    }} />
+                    
+                    <DeleteIcon
+                        style={{
+                            marginTop: '30px'
+                        }} />
                 </Box>
             </Box>
         </Box>
