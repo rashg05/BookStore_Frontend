@@ -71,6 +71,9 @@ function Header() {
     const myCartPage = () => {
         navigate('/mycart')
     }
+    const myHomePage = () => {
+        navigate('/Home')
+    }
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -176,6 +179,8 @@ function Header() {
                             color="inherit"
                             aria-label="open drawer"
                             sx={{ mr: 2 }}
+                            onClick={myHomePage}
+
                         >
                             <Box><img src={education} width='40px' /></Box>
                         </IconButton>

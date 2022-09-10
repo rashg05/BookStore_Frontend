@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 import { getBookCart } from '../../services/cartservice';
 import { useEffect } from 'react';
 import { makeStyles } from '@mui/styles';
+import { postOrder } from '../../services/orderservice';
 
 const UseStyle = makeStyles({
     orderMainBox: {
@@ -82,15 +83,6 @@ const UseStyle = makeStyles({
         justifyContent: 'center',
         alignItems: 'center',
         marginBottom: '30px'
-    },
-    buttonCheckout: {
-        width: '165px',
-        height: '30px',
-        background: '#3371B5 0% 0% no-repeat padding-box',
-        borderRadius: '2px',
-        position: 'relative',
-        left: '300px',
-        color: '#FFFFFF'
     }
 })
 
@@ -101,7 +93,14 @@ function Ordersummary() {
     const [listOfOrderSummary, setListOfOrderSummary] = React.useState([])
 
     const myOrderPlacedPage = () => {
-        navigate('/orderplaced')
+        postOrder()
+            .then((res) => {
+                console.log(res);
+                navigate('/orderplaced')
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     useEffect(() => {
@@ -125,8 +124,8 @@ function Ordersummary() {
                         <Box className={classes.imgContentBox}>
                             <Box className={classes.bookImgBox}>
                                 <img
-                                    src={cart.bookImage}
-                                    // src='./img/Image 11.png'
+                                    // src={cart.bookImage}
+                                    src='./img/Image 11.png'
                                     alt='book image'
                                     width='75px'
                                     height='115px' />
@@ -165,9 +164,18 @@ function Ordersummary() {
             }
             <Box className={classes.checkoutButtonBox}>
                 <Button
+                    sx={{
+                        width: '165px',
+                        height: '30px',
+                        background: '#3371B5 0% 0% no-repeat padding-box',
+                        borderRadius: '2px',
+                        position: 'relative',
+                        left: '300px',
+                        color: '#FFFFFF'
+                    }}
                     className={classes.buttonCheckout}
                     variant="contained"
-                    onClick={myOrderPlacedPage}
+                onClick={myOrderPlacedPage}
                 >
                     CHECKOUT
                 </Button>

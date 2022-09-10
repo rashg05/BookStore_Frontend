@@ -13,7 +13,7 @@ function Home() {
   const [dashboardView, setDashboardView] = useState(true)
   const [bookSelected, setBookSelected] = useState({})
 
-  const listenToDashboardView = (books) => {  
+  const listenToDashboardView = (books) => {
     console.log("my book", books);
     setBookSelected(books)
     setDashboardView(false)
@@ -21,12 +21,13 @@ function Home() {
 
   const fetchBooks = () => {
     getBooks()
-    .then((response) => {
-      console.log(response.data.data);
-      setListOfBooks(response.data.data)
-    }
-    )
-    .catch((err) => console.log(err))
+      .then((response) => {
+        console.log(response.data.data);
+        setListOfBooks(response.data.data)
+        console.log("book selected", bookSelected);
+      }
+      )
+      .catch((err) => console.log(err))
   }
 
   useEffect(() => {
@@ -36,31 +37,6 @@ function Home() {
   return (
     <Box>
       <Header />
-      <Container>
-        <Box style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          position: 'relative',
-          left: 60,
-          width: 1100
-        }}>
-          <Box>
-            <h2>Books</h2>
-          </Box>
-          <Box>
-            <label for='books' >
-              <select id="sortBooks">
-                <option value="Relevance">sort by Relevance</option>
-                <option value="Name">Name</option>
-                <option value="Category">Category</option>
-                <option value="Author">Author</option>
-              </select>
-            </label>
-          </Box>
-        </Box>
-      </Container>
-
       <Grid
         lg={12}
         md={12}
@@ -81,6 +57,31 @@ function Home() {
 
         {
           dashboardView ?
+          <>
+          <Container>
+        <Box style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          // position: 'relative',
+          // left: 60,
+          // width: 1100
+        }}>
+          <Box>
+            <h2>Books({listOfBooks.length} items)</h2>
+          </Box>
+          <Box>
+            <label for='books' >
+              <select id="sortBooks">
+                <option value="Relevance">sort by Relevance</option>
+                <option value="Name">Name</option>
+                <option value="Category">Category</option>
+                <option value="Author">Author</option>
+              </select>
+            </label>
+          </Box>
+        </Box>
+      </Container>
             <Grid
               item
               container
@@ -112,6 +113,7 @@ function Home() {
                 )}
 
             </Grid>
+            </>
 
             :
             <Grid
@@ -128,8 +130,8 @@ function Home() {
                 height: '91vh'
               }}
             >
-              <Addcart 
-              bookSelected={bookSelected}
+              <Addcart
+                bookSelected={bookSelected}
               />
             </Grid>
         }
