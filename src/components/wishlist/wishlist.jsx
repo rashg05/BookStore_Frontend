@@ -2,6 +2,9 @@ import React from 'react'
 import { Box } from '@mui/material'
 import { makeStyles } from '@mui/styles'
 import DeleteIcon from '@mui/icons-material/Delete'
+import { getBookWishlist, removeBookWishlist } from '../../services/wishlistservice'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
 const UseStyle = makeStyles({
     mainBox: {
@@ -66,13 +69,29 @@ const UseStyle = makeStyles({
 function Wishlist(props) {
     const classes = UseStyle()
 
+    // const handleRemove = () => {
+    //     console.log("delete book");
+    //     removeBookWishlist(props.wishlistBooks.bookId)
+    //         .then((res) => {
+    //             console.log(res.data.data);
+    //             getBookWishlist();
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
+
+    const listenToWishlistPage = () => {
+        props.handleRemove();
+    }
+
     return (
         <Box className={classes.mainBox}>
             <Box className={classes.bookContent}>
                 <Box className={classes.imageBox}>
                     <img
-                        src={props.wishlistBooks.bookImage}
-                        // src='./img/Image 11.png'
+                        // src={props.wishlistBooks.bookImage}
+                        src='./img/Image 11.png'
                         alt='bookimage'
                         width='85px'
                         height='120px' />
@@ -100,8 +119,8 @@ function Wishlist(props) {
                     </Box>
                 </Box>
                 <Box className={classes.binBox}>
-                    
                     <DeleteIcon
+                        onClick={listenToWishlistPage}
                         style={{
                             marginTop: '30px'
                         }} />

@@ -11,7 +11,7 @@ import Orderplaced from '../pages/orderplaced/orderplaced';
 
 function RouterOne() {
     return (
-        <div>
+        <>
             <Router>
                 <Routes>
                     <Route exact path="/" element={<Lander />} />
@@ -21,7 +21,7 @@ function RouterOne() {
                     <Route path="/orderplaced" element={<Orderplaced />} />
                 </Routes>
             </Router>
-        </div>
+        </>
     )
 }
 

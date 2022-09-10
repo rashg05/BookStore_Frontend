@@ -17,7 +17,7 @@ export const getBookWishlist = () => {
 }
 
 export const removeBookWishlist = (bookId) => {
-    let response = axios.get(`http://localhost:3005/api/v1/wishlist/remove_wishlist/${bookId}`,
+    let response = axios.put(`http://localhost:3005/api/v1/wishlist/remove_wishlist/${bookId}`,
         bookId,
         headerConfig)
     return response

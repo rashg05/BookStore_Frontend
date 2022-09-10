@@ -6,21 +6,24 @@ import { useState } from 'react';
 import Addressdetails from '../../components/addressdetails/addressdetails';
 import Ordersummary from '../../components/ordersummary/ordersummary'
 import { useEffect } from 'react';
-import { getBookCart } from '../../services/cartservice';
+import { deleteCartBook, getBookCart } from '../../services/cartservice';
 import Header from '../../components/header/header'
 import { Container } from '@mui/material'
-import Counter from '../../components/counter/counter'
-import { makeStyles } from '@mui/styles';
 import Footer from '../../components/footer/footer'
+import { useNavigate } from 'react-router';
+import { Typography } from "@mui/material";
+import { makeStyles } from '@mui/styles';
+import Cartboxtwo from '../../components/cartboxtwo/cartboxtwo';
 
 const UseStyle = makeStyles({
     containerCart: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between',
         position: 'relative',
         left: 60,
-        width: 1100
+        width: 1100,
+        height: 'auto',
+        marginTop: '20px',
     },
     cartParentBox: {
         display: 'flex',
@@ -31,6 +34,7 @@ const UseStyle = makeStyles({
         alignItems: 'center',
         justifyContent: 'center',
         marginLeft: '170px',
+        marginTop: '20px',
     },
     cartInsideBox: {
         display: 'flex',
@@ -48,6 +52,7 @@ const UseStyle = makeStyles({
         alignItems: 'center',
         width: '90%',
         height: '50px',
+        marginTop: '20px',
     },
     locationBox: {
         display: 'flex',
@@ -57,6 +62,55 @@ const UseStyle = makeStyles({
         position: 'relative',
         left: '348px',
         alignItems: 'center'
+    },
+    addressBoxOpen: {
+        display: 'flex',
+        alignItems: 'center',
+        // border: '1px solid black',
+        width: '90%',
+        height: '100px',
+        marginTop: '5px'
+    },
+
+    addressBox: {
+        display: 'flex',
+        width: '98%',
+        height: '60px',
+        marginTop: '10px',
+        border: '1px solid #DCDCDC',
+        borderRadius: '1px'
+    },
+    addressViewBox: {
+        display: 'flex',
+        width: '90%',
+        height: '40px',
+        // border: '1px solid black',
+        alignItems: 'center',
+        textAlign: 'start',
+        position: 'relative',
+        top: '9px',
+        left: '35px',
+        color: '#333232'
+    },
+    orderSummeryBox: {
+        diplay: 'flex',
+        width: '98%',
+        height: '60px',
+        marginTop: '10px',
+        border: '1px solid #DCDCDC',
+        borderRadius: '1px'
+    },
+    orderViewBox: {
+        display: 'flex',
+        width: '90%',
+        height: '40px',
+        // border: '1px solid black',
+        alignItems: 'center',
+        textAlign: 'start',
+        position: 'relative',
+        top: '9px',
+        left: '35px',
+        color: '#333232'
     },
     bookInCart: {
         display: 'flex',
@@ -123,72 +177,31 @@ const UseStyle = makeStyles({
         position: 'relative',
         top: '2px',
         left: '140px',
-    },
-    addressBoxOpen: {
-        display: 'flex',
-        alignItems: 'center',
-        // border: '1px solid black',
-        width: '90%',
-        height: '100px',
-        marginTop: '5px'
-    },
-    orderPlacedButton: {
-        width: '151px',
-        height: '35px',
-        background: '#3371B5 0% 0% no-repeat padding-box',
-        borderRadius: '2px',
-        position: 'relative',
-        left: '570px',
-        color: '#FFFFFF'
-    },
-    addressBox: {
-        display: 'flex',
-        width: '98%',
-        height: '60px',
-        marginTop: '10px',
-        border: '1px solid #DCDCDC',
-        borderRadius: '1px'
-    },
-    addressViewBox: {
-        display: 'flex',
-        width: '90%',
-        height: '40px',
-        // border: '1px solid black',
-        alignItems: 'center',
-        textAlign: 'start',
-        position: 'relative',
-        top: '9px',
-        left: '35px',
-        color: '#333232'
-    },
-    orderSummeryBox: {
-        diplay: 'flex',
-        width: '98%',
-        height: '60px',
-        marginTop: '10px',
-        border: '1px solid #DCDCDC',
-        borderRadius: '1px'
-    },
-    orderViewBox: {
-        display: 'flex',
-        width: '90%',
-        height: '40px',
-        // border: '1px solid black',
-        alignItems: 'center',
-        textAlign: 'start',
-        position: 'relative',
-        top: '9px',
-        left: '35px',
-        color: '#333232'
     }
 })
 
 function Mycart() {
     const classes = UseStyle()
+    const navigate = useNavigate();
 
     const [addressView, setAddressView] = useState(true)
     const [orderSummery, setOrderSummery] = useState(true)
     const [listOfCart, setListOfCart] = useState([])
+
+    useEffect(() => {
+        getBookCart()
+            .then((resp) => {
+                console.log(resp, "resp.data.data");
+                setListOfCart(resp.data.data[0].book)
+            })
+            .catch((err) => { console.log(err); })
+    }, [])
+
+    console.log("my cart list", listOfCart);
+
+    const onClickingHome = () => {
+        navigate('/Home')
+    }
 
     const addAddress = () => {
         setAddressView(false)
@@ -198,26 +211,21 @@ function Mycart() {
         setOrderSummery(false)
     }
 
-    useEffect(() => {
-        getBookCart()
-            .then((resp) => {
-                console.log(resp, "resp.data.data");
-                setListOfCart(resp.data.data[0].book)
-            })
-            .catch((err) => { console.log(err); })
-
-    }, [])
-    console.log("my cart list", listOfCart);
-
-
     return (
         <Box>
             <Header />
             <Container>
                 <Box className={classes.containerCart}>
-                    <Box>
-                        <h5>Home/my cart</h5>
-                    </Box>
+                    <Typography component="span" color="text.secondary" style={{
+                        font: 'normal normal 14px Roboto',
+                        cursor: 'pointer'
+                    }}
+                        onClick={onClickingHome}>
+                        Home /
+                    </Typography>
+                    <Typography component="span" style={{ font: 'normal normal bold 14px Roboto' }}>
+                        { } My Cart
+                    </Typography>
                 </Box>
             </Container>
 
@@ -225,7 +233,7 @@ function Mycart() {
                 <Box className={classes.cartInsideBox}>
                     <Box className={classes.itemInCart}>
                         <h3 style={{ color: '#0A0102', fontSize: '18px' }}>
-                            My Cart (1)
+                            My Cart ({listOfCart.length})
                         </h3>
                         <Box className={classes.locationBox}>
                             <LocationOnIcon style={{ color: '#A03037' }} />
@@ -242,61 +250,7 @@ function Mycart() {
                     {
                         listOfCart.map((cart) =>
                         (
-                            <Box className={classes.bookInCart}>
-                                <Box className={classes.bookDetail}>
-                                    <Box className={classes.bookImg}>
-                                        <img
-                                            // src='./img/Image 11.png'
-                                            src={cart.bookImage}
-                                            alt='bookimage'
-                                            width='85px'
-                                            height='100px' />
-                                    </Box>
-                                    <Box className={classes.bookContent}>
-                                        <Box style={{ display: 'flex', flexDirection: 'column' }}>
-                                            <h1 style={{
-                                                font: 'normal normal normal 20px/23px Lato',
-                                                paddingTop: '15px'
-                                            }}>
-                                                {cart.bookName}
-                                                {/* Don't Make Me Think */}
-                                            </h1>
-                                            <h3 style={{
-                                                font: 'normal normal normal 15px/19px Lato',
-                                                color: '#9D9D9D',
-                                            }}>
-                                                {cart.author}
-                                                {/* by Steve Krug */}
-                                            </h3>
-                                        </Box>
-                                        <Box style={{ display: 'flex', alignItems: 'center' }}>
-                                            <Box className={classes.discountPrice}>
-                                                Rs.{cart.discountPrice}
-                                                {/* Rs. 1500 */}
-                                            </Box>
-                                            <Box className={classes.mainPrice}>
-                                                Rs.{cart.price}
-                                                {/* Rs. 2000 */}
-                                            </Box>
-                                        </Box>
-                                    </Box>
-                                </Box>
-                                < Box className={classes.counterMainBox}>
-                                    <Box className={classes.counterBox}>
-                                        <Counter />
-                                    </Box>
-                                    <Box className={classes.removeButton}>
-                                        <Button
-                                            style={{
-                                                width: '45px',
-                                                height: '15px',
-                                                color: '#0A0102',
-                                            }}>
-                                            Remove
-                                        </Button>
-                                    </Box>
-                                </Box>
-                            </Box>
+                            <Cartboxtwo cart={cart} />
                         ))
                     }
 
@@ -304,7 +258,15 @@ function Mycart() {
                         addressView
                             ? <Box className={classes.addressBoxOpen}>
                                 <Button
-                                    className={classes.orderPlacedButton}
+                                    sx={{
+                                        width: '151px',
+                                        height: '35px',
+                                        background: '#3371B5 0% 0% no-repeat padding-box',
+                                        borderRadius: '2px',
+                                        position: 'relative',
+                                        left: '570px',
+                                        color: '#FFFFFF'
+                                    }}
                                     variant="contained"
                                     onClick={addAddress}
                                 >
@@ -313,7 +275,9 @@ function Mycart() {
                             </Box>
                             : null
                     }
+
                 </Box>
+
                 {
                     addressView
                         ? <Box className={classes.addressBox}>

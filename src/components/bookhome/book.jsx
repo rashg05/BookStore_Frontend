@@ -18,6 +18,7 @@ function Book(props) {
     }
 
     return (
+        
         <Card style={{
             width: '18vw',
             height: '50vh',
@@ -48,8 +49,8 @@ function Book(props) {
                         component="img"
                         height="140px"
                         width="100%"
-                        // image="./img/Image 11.png"
-                        image={props.books.bookImage} 
+                        image="./img/Image 11.png"
+                        // image={props.books.bookImage} 
                         // onClick={abc}
                         alt="Book"
                     />
@@ -155,6 +156,7 @@ function Book(props) {
                 </Box>
             </Box>
         </Card>
+        
     );
 }
 
